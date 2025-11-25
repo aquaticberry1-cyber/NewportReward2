@@ -101,6 +101,27 @@
     color: black;
   }
 
+  /* Video popup */
+  #videoPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+
+  #videoPopup video {
+    width: 90%;
+    max-width: 800px;
+    border: 3px solid white;
+    border-radius: 12px;
+  }
+
 </style>
 </head>
 <body>
@@ -109,7 +130,12 @@
 
 <div id="imageContainer">
   <img src="https://i.ibb.co/B2MQvtCX/IMG-7321.jpg" alt="IMG-7321" id="mainImage">
-  <a href="assets/video.mp4" class="btn" id="btn2">$2</a>
+  <a href="#" class="btn" id="btn2">$2</a>
+</div>
+
+<!-- VIDEO POPUP -->
+<div id="videoPopup">
+  <video id="rewardVideo" controls></video>
 </div>
 
 <script>
@@ -240,6 +266,29 @@ copyBtn.addEventListener('click', ()=>{
     copyBtn.textContent = 'Copied!';
     setTimeout(()=>{copyBtn.textContent='Copy Website Link';}, 1500);
   });
+});
+
+// VIDEO POPUP CODE
+const btn2 = document.getElementById('btn2');
+const videoPopup = document.getElementById('videoPopup');
+const rewardVideo = document.getElementById('rewardVideo');
+
+// <-- CHANGE THIS LINK to your Google Drive direct link -->
+const videoURL = "https://drive.google.com/uc?export=download&id=13FyE0uoPQlte-dbvub2Dl2KgTR_9Zunk";
+
+btn2.addEventListener('click', (e)=>{
+  e.preventDefault();
+  rewardVideo.src = videoURL;
+  videoPopup.style.display = 'flex';
+  rewardVideo.play();
+});
+
+videoPopup.addEventListener('click', (e)=>{
+  if(e.target === videoPopup){
+    rewardVideo.pause();
+    rewardVideo.currentTime = 0;
+    videoPopup.style.display = 'none';
+  }
 });
 </script>
 </body>
