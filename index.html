@@ -32,11 +32,11 @@
     display: inline-block;
   }
 
-  /* Video popup */
+  /* simple popup */
   #videoPopup {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0,0,0,0.9);
     display: none;
     align-items: center;
     justify-content: center;
@@ -52,11 +52,11 @@
 </head>
 <body>
 
-<img src="https://i.ibb.co/B2MQvtCX/IMG-7321.jpg" alt="Main Image">
+<!-- REPLACE THIS IMAGE WITH YOUR REAL ONE -->
+<img src="https://via.placeholder.com/500x300?text=Your+Image+Here" alt="Main Image">
 
 <a href="#" class="btn" id="btn2">$1</a>
 
-<!-- VIDEO POPUP -->
 <div id="videoPopup">
   <video id="popupVideo" controls>
     <source id="popupSource" src="" type="video/mp4">
@@ -76,14 +76,14 @@ const videoURL = "assets/video.mp4";
 btn2.addEventListener('click', (e) => {
   e.preventDefault();
 
-  popupSource.src = videoURL;   // set video path
-  popupVideo.load();            // load video
-  popupVideo.play().catch(() => {}); // try to autoplay
+  popupSource.src = videoURL;
+  popupVideo.load();
+  popupVideo.play().catch(() => {});
 
-  videoPopup.style.display = "flex"; // show popup
+  videoPopup.style.display = "flex";
 });
 
-// close popup on click outside
+// close popup
 videoPopup.addEventListener('click', (e) => {
   if (e.target === videoPopup) {
     popupVideo.pause();
